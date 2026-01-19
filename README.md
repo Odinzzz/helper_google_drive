@@ -5,7 +5,7 @@ Helpers for Google Drive and Google Docs using caller-supplied OAuth credentials
 ## Install
 
 ```
-pip install helper-google-drive
+pip install git+https://github.com/Odinzzz/helper_google_drive.git
 ```
 
 ## Credentials format
