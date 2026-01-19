@@ -10,10 +10,10 @@ pip install helper-google-drive
 
 ## Documentation
 
-- Install: docs/install.md
-- Credentials: docs/credentials.md
-- Usage: docs/usage.md
-- Changelog: CHANGELOG.md
+- Install: [docs/install.md](docs/install.md)
+- Credentials: [docs/credentials.md](docs/credentials.md)
+- Usage: [docs/usage.md](docs/usage.md)
+- Changelog: [CHANGELOG.md](CHANGELOG.md)
 
 ## Quick example
 
