@@ -1,21 +1,19 @@
-﻿from typing import Iterable
+from typing import Iterable
 
 from googleapiclient.discovery import build
 
-from helper_google_drive.drive import build_credentials
+from .drive import CredentialInput, build_credentials
 
 
 def create_document_in_folder(
+    credentials: CredentialInput,
     *,
     folder_id: str,
     title: str,
     lines: Iterable[str],
 ) -> dict:
-    """
-    CrÃ©e un Google Doc dans un dossier Drive donnÃ© et insÃ¨re le contenu fourni.
-    Retourne les mÃ©tadonnÃ©es du fichier crÃ©Ã© (id, name, webViewLink).
-    """
-    creds = build_credentials()
+    """Create a Google Doc in a folder and insert the provided lines."""
+    creds = build_credentials(credentials)
     drive_service = build("drive", "v3", credentials=creds)
     docs_service = build("docs", "v1", credentials=creds)
 
@@ -44,4 +42,3 @@ def create_document_in_folder(
     ).execute()
 
     return created
-

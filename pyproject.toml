@@ -1,4 +1,4 @@
-﻿[build-system]
+[build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
@@ -8,6 +8,10 @@ version = "0.1.0"
 description = "Local helpers for Google Drive and related utilities."
 readme = "README.md"
 requires-python = ">=3.10"
+dependencies = [
+    "google-api-python-client>=2.0.0",
+    "google-auth>=2.0.0",
+]
 
 [tool.setuptools]
 packages = ["helper_google_drive"]
