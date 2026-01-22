@@ -1,4 +1,5 @@
 from .docs import create_document_in_folder
+from .sheets import append_row
 from .drive import (
     CredentialInput,
     build_credentials,
@@ -28,4 +29,5 @@ __all__ = [
     "list_folders",
     "rename_folder",
     "upload_file_to_folder",
+    "append_row",
 ]

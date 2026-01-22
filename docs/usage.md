@@ -9,6 +9,7 @@ from helper_google_drive import (
     upload_file_to_folder,
     rename_folder,
     create_document_in_folder,
+    append_row,
     export_credentials,
 )
 
@@ -42,6 +43,13 @@ created = create_document_in_folder(
     folder_id="parent-folder-id",
     title="My Doc",
     lines=["Hello", "World"],
+)
+
+append_row(
+    credentials,
+    spreadsheet_id="spreadsheet-id",
+    range_name="Sheet1!A:Z",
+    values=["Col A", "Col B", "Col C"],
 )
 
 # If you want to store refreshed tokens
