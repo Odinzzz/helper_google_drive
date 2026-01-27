@@ -5,10 +5,10 @@ Helpers for Google Drive and Google Docs using caller-supplied OAuth credentials
 ## Install
 
 ```bash
-pip install git+https://github.com/<ORG>/<REPO>.git@v0.3.3
+pip install git+https://github.com/Odinzzz/helper_google_drive.git@v0.3.3
 ```
 
-Replace `<ORG>/<REPO>` with your GitHub path and the tag/branch you want.
+Replace the tag/branch with the version you want.
 
 ## Documentation
 
