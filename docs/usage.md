@@ -66,7 +66,7 @@ update_table(
     values=[["Value A", "Value B"]],
 )
 
-# Always append a new row to the table (inserts rows as needed)
+# Append to the first empty row in the table; if none, inserts a new row
 append_row_to_table(
     credentials,
     spreadsheet_id="spreadsheet-id",
