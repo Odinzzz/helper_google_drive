@@ -23,3 +23,5 @@ This module expects OAuth credentials supplied by the caller. You can pass:
 
 - Access tokens are refreshed automatically if expired and a `refresh_token` is present.
 - Use `export_credentials()` to read the refreshed token values back.
+- Sheets helpers require appropriate Sheets scopes, for example:
+  - `https://www.googleapis.com/auth/spreadsheets`

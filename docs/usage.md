@@ -3,13 +3,17 @@
 ```python
 from helper_google_drive import (
     build_credentials,
+    append_row_to_table,
+    get_table_columns,
     list_files,
     list_folders,
+    list_tables,
     download_file,
     upload_file_to_folder,
     rename_folder,
     create_document_in_folder,
     append_row,
+    update_table,
     export_credentials,
 )
 
@@ -22,6 +26,7 @@ credentials = {
     "scopes": [
         "https://www.googleapis.com/auth/drive",
         "https://www.googleapis.com/auth/documents",
+        "https://www.googleapis.com/auth/spreadsheets",
     ],
 }
 
@@ -50,6 +55,23 @@ append_row(
     spreadsheet_id="spreadsheet-id",
     range_name="Sheet1!A:Z",
     values=["Col A", "Col B", "Col C"],
+)
+
+tables = list_tables(credentials, spreadsheet_id="spreadsheet-id")
+columns = get_table_columns(credentials, spreadsheet_id="spreadsheet-id", table_name_or_id="Table1")
+update_table(
+    credentials,
+    spreadsheet_id="spreadsheet-id",
+    table_name_or_id="Table1",
+    values=[["Value A", "Value B"]],
+)
+
+# Always append a new row to the table (inserts rows as needed)
+append_row_to_table(
+    credentials,
+    spreadsheet_id="spreadsheet-id",
+    table_name_or_id="Table1",
+    values=["Value A", "Value B"],
 )
 
 # If you want to store refreshed tokens

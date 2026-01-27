@@ -6,6 +6,12 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 
 ## [Unreleased]
 
+- Added `append_row_to_table` to always insert a new row in a Sheets table.
+
+## [0.3.0] - 2026-01-27
+
+- Added helpers to list tables, read columns, and update values inside a table.
+
 ## [0.1.01] - 2026-01-19
 
 - Initial packaging as a pip-installable module.

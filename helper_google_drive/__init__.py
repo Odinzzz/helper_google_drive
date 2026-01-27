@@ -1,5 +1,5 @@
 from .docs import create_document_in_folder
-from .sheets import append_row
+from .sheets import append_row, append_row_to_table, get_table_columns, list_tables, update_table
 from .drive import (
     CredentialInput,
     build_credentials,
@@ -30,4 +30,8 @@ __all__ = [
     "rename_folder",
     "upload_file_to_folder",
     "append_row",
+    "append_row_to_table",
+    "list_tables",
+    "get_table_columns",
+    "update_table",
 ]
