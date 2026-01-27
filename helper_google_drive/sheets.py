@@ -207,7 +207,7 @@ def append_row_to_table(
     values: Sequence[Any],
     value_input_option: str = "RAW",
 ) -> Dict[str, Any]:
-    """Append a single row to a table, always inserting new rows if needed."""
+    """Append a single row to a table, filling the first empty row if available."""
     tables = _load_tables(credentials, spreadsheet_id)
     target: Optional[Dict[str, Any]] = None
     for table in tables:
@@ -217,10 +217,47 @@ def append_row_to_table(
     if target is None:
         raise ValueError("table not found")
 
-    table_range_a1 = _grid_range_to_a1(target["sheetTitle"], target["range"])
-
     creds = build_credentials(credentials)
     service = build("sheets", "v4", credentials=creds)
+
+    def _is_empty_cell(cell: Any) -> bool:
+        if cell is None:
+            return True
+        if isinstance(cell, str) and not cell.strip():
+            return True
+        return False
+
+    table_range = target["range"]
+    table_range_a1 = _grid_range_to_a1(target["sheetTitle"], table_range)
+
+    values_response = (
+        service.spreadsheets()
+        .values()
+        .get(spreadsheetId=spreadsheet_id, range=table_range_a1)
+        .execute()
+    )
+    rows = values_response.get("values", []) or []
+
+    table_row_count = table_range["endRowIndex"] - table_range["startRowIndex"]
+    empty_row_index: Optional[int] = None
+    for row_index in range(table_row_count):
+        if row_index >= len(rows):
+            empty_row_index = row_index
+            break
+        row = rows[row_index]
+        if not row or all(_is_empty_cell(cell) for cell in row):
+            empty_row_index = row_index
+            break
+
+    if empty_row_index is not None:
+        return update_table(
+            credentials,
+            spreadsheet_id=spreadsheet_id,
+            table_name_or_id=table_name_or_id,
+            values=[list(values)],
+            start_row=empty_row_index,
+        )
+
     body = {"values": [list(values)]}
     return (
         service.spreadsheets()
